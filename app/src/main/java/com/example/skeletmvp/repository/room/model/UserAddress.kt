@@ -8,12 +8,15 @@ import androidx.room.PrimaryKey
 @Entity(
     tableName = "User_Address",
     foreignKeys = [
-        ForeignKey(entity = UserModel::class,
+        ForeignKey(
+            entity = UserModel::class,
             parentColumns = ["user_id"],
             childColumns = ["address_id"],
             onDelete = ForeignKey.CASCADE,
             onUpdate = ForeignKey.CASCADE,
-            deferred = false)]
+            deferred = false
+        )
+    ]
 )
 data class UserAddress(
     @ColumnInfo(name = "address_id")

@@ -4,5 +4,4 @@ import androidx.room.*
 
 @Dao
 interface UserDao {
-
 }
