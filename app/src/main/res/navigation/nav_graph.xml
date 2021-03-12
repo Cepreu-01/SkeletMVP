@@ -6,7 +6,7 @@
     app:startDestination="@id/mainnFragment">
     <fragment
         android:id="@+id/mainnFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.MainnFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.main.view.MainnFragment"
         android:label="@string/main_fragment_label"
         tools:layout="@layout/fragment_mainn" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.AddFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.add.view.AddFragment"
         android:label="@string/add_fragment_label"
         tools:layout="@layout/fragment_add" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.UpdateFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.update.view.UpdateFragment"
         android:label="fragment_update"
         tools:layout="@layout/fragment_update" >
         <action

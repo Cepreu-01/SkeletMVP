@@ -61,4 +61,7 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:2.2.6"
 
+    // canaryleak
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
+
 }

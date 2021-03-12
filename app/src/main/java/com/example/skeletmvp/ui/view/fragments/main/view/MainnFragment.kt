@@ -1,17 +1,14 @@
-package com.example.skeletmvp.ui.view.fragments
+package com.example.skeletmvp.ui.view.fragments.main.view
 
-import android.os.Bundle
 import android.view.*
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentMainnBinding
+import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
 
 class MainnFragment : BaseFragment<FragmentMainnBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMainnBinding
         get() = FragmentMainnBinding::inflate
 
-    override fun setup() {
+    override fun setupViews() {
 
     }
 
