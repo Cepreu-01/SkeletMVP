@@ -11,11 +11,6 @@ class MainnFragment : BaseFragment<FragmentMainnBinding>() {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMainnBinding
         get() = FragmentMainnBinding::inflate
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
     override fun setup() {
 
     }

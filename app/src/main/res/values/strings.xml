@@ -5,5 +5,5 @@
     <string name="add_fragment_label">Добавление записи</string>
     <string name="menu_add">Добавить</string>
     <string name="menu_update">Обновить</string>
-    <string name="menu_ok">Завершить</string>
+    <string name="menu_accept">Принять</string>
 </resources>

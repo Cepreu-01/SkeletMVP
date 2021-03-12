@@ -36,12 +36,16 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
         super.onDestroy()
         _binding = null
     }
+    override fun onStart() {
+        super.onStart()
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         when(binding){
             is FragmentMainnBinding  -> menu.add(0,1,0,R.string.menu_add)
             is FragmentUpdateBinding -> menu.add(0,2,0,R.string.menu_update)
-            is FragmentAddBinding    -> menu.add(0,3,0,R.string.menu_ok)
+            is FragmentAddBinding    -> menu.add(0,3,0,R.string.menu_accept)
         }
         super.onCreateOptionsMenu(menu, inflater)
     }
