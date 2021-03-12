@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainnFragment">
+    <fragment
+        android:id="@+id/mainnFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.MainnFragment"
+        android:label="@string/main_fragment_label"
+        tools:layout="@layout/fragment_mainn" >
+        <action
+            android:id="@+id/action_mainnFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.AddFragment"
+        android:label="@string/add_fragment_label"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_mainnFragment"
+            app:destination="@id/mainnFragment" />
+    </fragment>
+</navigation>
