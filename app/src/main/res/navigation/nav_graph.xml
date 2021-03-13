@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.example.skeletmvp.ui.view.fragments.update.view.UpdateFragment"
-        android:label="fragment_update"
+        android:label="@string/update_fragment_label"
         tools:layout="@layout/fragment_update" >
         <action
             android:id="@+id/action_updateFragment_to_mainnFragment"

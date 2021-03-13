@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class UserModel(
     @ColumnInfo(name = "user_id")
     @PrimaryKey(autoGenerate = true)
-    var id:Int,
+    val id:Int,
     @ColumnInfo(name = "user_name")
-    var name:String
+    val name:String
 )

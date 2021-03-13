@@ -21,7 +21,7 @@ import androidx.room.PrimaryKey
 data class UserAddress(
     @ColumnInfo(name = "address_id")
     @PrimaryKey(autoGenerate = true)
-    var id:Int,
+    val id:Int,
     @ColumnInfo(name = "address")
-    var address:String
+    val address:String
 )
