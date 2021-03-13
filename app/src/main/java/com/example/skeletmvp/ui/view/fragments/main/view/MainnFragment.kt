@@ -18,6 +18,7 @@ import com.example.skeletmvp.repository.room.model.UserWithAddress
 import com.example.skeletmvp.ui.recyclerview.ItemClicks
 import com.example.skeletmvp.ui.recyclerview.RecyclerAdapter
 import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
+import com.example.skeletmvp.ui.view.fragments.main.presenter.MainPresenter
 import com.example.skeletmvp.utils.ADD_USER
 import com.example.skeletmvp.utils.UPDATE_USER
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,30 +29,31 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainnFragment : BaseFragment<FragmentMainnBinding>(), ItemClicks {
-    private var dao: UserDao? = null
+class MainnFragment : BaseFragment<FragmentMainnBinding>(), ItemClicks,IMainFragment {
     private var adapter: RecyclerAdapter? = null
-    private var disp: Disposable? = null
     private var recyclerView: RecyclerView? = null
+    private var presenter:MainPresenter?=null
+
+    init {
+        adapter = RecyclerAdapter(itemClicks = this)
+    }
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMainnBinding
         get() = FragmentMainnBinding::inflate
 
 
     override fun setupViews() {
-        adapter = RecyclerAdapter(itemClicks = this)
-        dao = Repository(requireContext()).dao
-        createRecycler()
-        disp = dao?.getUserWithAddress()?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())?.subscribe {
-                adapter?.userList?.clear()
-                adapter?.userList?.addAll(it)
-                adapter?.notifyDataSetChanged()
-            }
-
+        setupRecycler()
+        presenter = MainPresenter(this,requireContext())
     }
 
-    private fun createRecycler() {
+    override fun updateAdapter(list: List<UserWithAddress>) {
+        adapter?.userList?.clear()
+        adapter?.userList?.addAll(list)
+        adapter?.notifyDataSetChanged()
+    }
+
+    override fun setupRecycler() {
         recyclerView = recycler_view
         recyclerView?.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -60,55 +62,17 @@ class MainnFragment : BaseFragment<FragmentMainnBinding>(), ItemClicks {
 
     override fun onDestroy() {
         super.onDestroy()
-        disp?.dispose()
+        presenter?.destroyRefs()
         recyclerView = null
-        dao = null
         adapter = null
     }
 
     override fun onStart() {
         super.onStart()
-        if (arguments?.getParcelable<UserWithAddress>(ADD_USER) != null) {
-            addUser()
-            arguments?.clear()
-        }
-        if(arguments?.getParcelable<UserWithAddress>(UPDATE_USER) != null){
-            updateUser()
-        }
-    }
+        presenter?.addUser(arguments)
+        presenter?.updateUser(arguments)
+        presenter?.observeChanges()
 
-    private fun updateUser() {
-        val userWithAddress = arguments?.getParcelable<UserWithAddress>(UPDATE_USER)
-        val userId = userWithAddress?.user_id
-        val userName = userWithAddress?.user_name
-        val userAddressId = userWithAddress?.user_address_id
-        val userAddress = userWithAddress?.user_address
-
-        if (userId != null && userName != null && userAddressId != null && userAddress != null) {
-            val user = UserModel(userId, userName)
-            val address = UserAddress(userAddressId, userAddress)
-
-            CoroutineScope(Dispatchers.IO).launch {
-                dao?.updateUserWithAddress(user, address)
-            }
-        }
-    }
-
-    private fun addUser() {
-        val userWithAddress = arguments?.getParcelable<UserWithAddress>(ADD_USER)
-        val userId = userWithAddress?.user_id
-        val userName = userWithAddress?.user_name
-        val userAddressId = userWithAddress?.user_address_id
-        val userAddress = userWithAddress?.user_address
-
-        if (userId != null && userName != null && userAddressId != null && userAddress != null) {
-            val user = UserModel(userId, userName)
-            val address = UserAddress(userAddressId, userAddress)
-
-            CoroutineScope(Dispatchers.IO).launch {
-                dao?.insertUserWithAddress(user, address)
-            }
-        }
     }
 
     override fun itemClick(position: Int) {
@@ -119,13 +83,11 @@ class MainnFragment : BaseFragment<FragmentMainnBinding>(), ItemClicks {
 
     override fun longItemClick(position: Int) {
         val userId = adapter?.userList?.get(position)?.user_id
-        if (userId != null) deleteUser(userId)
+        if (userId != null) presenter?.deleteUser(userId)
     }
 
-    private fun deleteUser(userId: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            dao?.deleteUser(userId)
-        }
+    override fun showMessage(message: String) {
+        Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
 
 }
