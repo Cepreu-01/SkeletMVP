@@ -48,8 +48,6 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         when(binding){
             is FragmentMainnBinding  -> menu.add(0,1,0,R.string.menu_add)
-            is FragmentUpdateBinding -> menu.add(0,2,0,R.string.menu_update)
-            is FragmentAddBinding    -> menu.add(0,3,0,R.string.menu_accept)
         }
         super.onCreateOptionsMenu(menu, inflater)
     }
@@ -57,8 +55,6 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             1 -> navController?.navigate(R.id.action_mainnFragment_to_addFragment)
-            2 -> navController?.navigate(R.id.action_updateFragment_to_mainnFragment)
-            3 -> navController?.navigate(R.id.action_addFragment_to_mainnFragment)
         }
         return super.onOptionsItemSelected(item)
     }

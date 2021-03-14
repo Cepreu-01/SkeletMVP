@@ -7,5 +7,4 @@ interface IUpdatePresenter {
     fun setUserInfo(arguments: Bundle?,binding: FragmentUpdateBinding)
     fun getUserInfo(binding: FragmentUpdateBinding):Bundle?
     fun createUserToUpdate(user_id:Int,user_name:String,address_id:Int,address:String):Bundle
-    fun destroyRefs()
 }

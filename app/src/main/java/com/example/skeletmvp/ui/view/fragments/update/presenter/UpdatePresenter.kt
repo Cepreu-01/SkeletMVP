@@ -1,6 +1,7 @@
 package com.example.skeletmvp.ui.view.fragments.update.presenter
 
 import android.os.Bundle
+import android.util.Log
 import androidx.core.os.bundleOf
 import com.example.skeletmvp.databinding.FragmentUpdateBinding
 import com.example.skeletmvp.repository.room.model.UserWithAddress
@@ -23,7 +24,6 @@ class UpdatePresenter(val iUpdateFragment: IUpdateFragment):IUpdatePresenter {
             binding.edtName.setText(userName)
             binding.edtAddress.setText(address)
         }
-        arguments?.clear()
         iUpdateFragment.showMessage("SET USER INFO")
     }
 
@@ -35,11 +35,6 @@ class UpdatePresenter(val iUpdateFragment: IUpdateFragment):IUpdatePresenter {
     ): Bundle {
         val updatedUser = UserWithAddress(user_id,user_name,address_id,address)
         return bundleOf(UPDATE_USER to updatedUser)
-    }
-
-    override fun destroyRefs() {
-        userId = null
-        addressId = null
     }
 
     override fun getUserInfo(binding: FragmentUpdateBinding):Bundle? {

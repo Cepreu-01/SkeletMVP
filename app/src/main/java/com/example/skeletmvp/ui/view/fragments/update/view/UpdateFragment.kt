@@ -1,14 +1,17 @@
 package com.example.skeletmvp.ui.view.fragments.update.view
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentUpdateBinding
+import com.example.skeletmvp.repository.room.model.UserWithAddress
 import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
 import com.example.skeletmvp.ui.view.fragments.update.presenter.UpdatePresenter
+import com.example.skeletmvp.utils.UPDATE_USER
 
 
 class UpdateFragment : BaseFragment<FragmentUpdateBinding>(),IUpdateFragment {
@@ -46,5 +49,4 @@ class UpdateFragment : BaseFragment<FragmentUpdateBinding>(),IUpdateFragment {
         super.onDestroy()
         presenter = null
     }
-
 }
