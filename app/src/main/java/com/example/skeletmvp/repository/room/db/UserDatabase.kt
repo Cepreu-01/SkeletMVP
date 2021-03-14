@@ -12,7 +12,7 @@ import com.example.skeletmvp.repository.room.model.UserModel
 abstract class UserDatabase:RoomDatabase() {
     abstract fun getDao():UserDao
     companion object{
-        private var INSTANCE:UserDatabase?=null
+        var INSTANCE:UserDatabase?=null
         fun getInstance(context: Context):UserDatabase?{
             val tempInstance = INSTANCE
             return if(tempInstance!=null){

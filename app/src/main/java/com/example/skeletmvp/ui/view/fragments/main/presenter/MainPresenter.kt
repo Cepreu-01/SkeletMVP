@@ -19,24 +19,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainPresenter {
-    private var dao: UserDatabase? = null
+    private var repository:Repository? = null
     private var disp: Disposable? = null
 
 
     init {
-        dao = Repository(context).dao
+        repository = Repository(context)
     }
 
     override fun observeChanges() {
-        disp = dao?.getDao()?.getUserWithAddress()?.subscribeOn(Schedulers.io())
+        disp = repository?.getUserWithAddress()?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())?.subscribe {
                 iMainFragment.updateAdapter(it)
             }
     }
 
     override fun destroyRefs() {
-        dao?.close()
-        dao = null
+        repository?.closeDB()
+        repository = null
         disp?.dispose()
     }
 
@@ -57,7 +57,7 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
                 val address = UserAddress(userAddressId, userAddress)
 
                 CoroutineScope(Dispatchers.IO).launch {
-                    dao?.getDao()?.updateUserWithAddress(user, address)
+                    repository?.updateUserWithAddress(user, address)
                 }
             }
             arguments?.clear()
@@ -78,7 +78,7 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
                 val address = UserAddress(userAddressId, userAddress)
 
                 CoroutineScope(Dispatchers.IO).launch {
-                    dao?.getDao()?.insertUserWithAddress(user, address)
+                    repository?.insertUserWithAddress(user, address)
                 }
             }
             arguments?.clear()
@@ -88,7 +88,7 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
 
     override fun deleteUser(userId:Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            dao?.getDao()?.deleteUser(userId)
+            repository?.deleteUser(userId)
         }
         iMainFragment.showMessage("DELETE USER")
     }
