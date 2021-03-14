@@ -22,7 +22,6 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
     private var repository:Repository? = null
     private var disp: Disposable? = null
 
-
     init {
         repository = Repository(context)
     }

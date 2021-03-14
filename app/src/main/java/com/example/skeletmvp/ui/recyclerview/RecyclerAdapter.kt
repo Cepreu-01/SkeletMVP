@@ -9,13 +9,19 @@ import com.example.skeletmvp.repository.room.model.UserWithAddress
 import kotlinx.android.synthetic.main.item.view.*
 
 
-class RecyclerAdapter(var userList:ArrayList<UserWithAddress> = ArrayList(),val itemClicks: ItemClicks):RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(
+    var userList:ArrayList<UserWithAddress> = ArrayList(),
+    val itemClicks: ItemClicks
+):RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+
     inner class ViewHolder(item:View):RecyclerView.ViewHolder(item),View.OnClickListener,View.OnLongClickListener {
         init {
             setClickListeners()
         }
+
         val userName = item.tv_name
         val userAddress = item.tv_address
+
         override fun onClick(v: View?) {
             itemClicks.itemClick(adapterPosition)
         }

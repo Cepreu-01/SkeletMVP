@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.skeletmvp.repository.room.dao.UserDao
 import com.example.skeletmvp.repository.room.model.UserAddress
 import com.example.skeletmvp.repository.room.model.UserModel
+import com.example.skeletmvp.utils.DB_NAME
 
 @Database(entities = [UserModel::class,UserAddress::class], version = 1, exportSchema = true)
 abstract class UserDatabase:RoomDatabase() {
@@ -21,7 +22,7 @@ abstract class UserDatabase:RoomDatabase() {
                 val db = Room.databaseBuilder(
                     context,
                     UserDatabase::class.java,
-                    "db"
+                    DB_NAME
                 ).build()
                 INSTANCE = db
                 INSTANCE

@@ -7,13 +7,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="recycler_item">
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_margin">@dimen/low_margin</item>
         <item name="android:background">@color/colorBluish</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:padding">@dimen/low_padding</item>
     </style>
     <style name="item_text">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_size_middle</item>
         <item name="android:textColor">@color/colorUltraBlack</item>
     </style>
     <style name="edit_text">

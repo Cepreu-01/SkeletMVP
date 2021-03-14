@@ -13,9 +13,11 @@ import kotlinx.android.synthetic.main.fragment_add.*
 
 class AddFragment : BaseFragment<FragmentAddBinding>(),IAddFragment {
     private var presenter:AddPresenter?=null
+
     init {
         presenter = AddPresenter(this)
     }
+
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentAddBinding
         get() = FragmentAddBinding::inflate
 
