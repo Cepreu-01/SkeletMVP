@@ -6,7 +6,7 @@ import com.example.skeletmvp.repository.room.model.UserAddress
 import com.example.skeletmvp.repository.room.model.UserModel
 
 class Repository(context: Context) {
-    val dao = UserDatabase.getInstance(context)
+    var dao = UserDatabase.getInstance(context)
     var INSTANCE = UserDatabase.removeInstance()
 
     fun getUserWithAddress() = dao?.getDao()?.getUserWithAddress()
@@ -14,6 +14,8 @@ class Repository(context: Context) {
     fun updateUserWithAddress(userModel: UserModel,userAddress: UserAddress) = dao?.getDao()?.updateUserWithAddress(userModel,userAddress)
     fun deleteUser(id:Int) = dao?.getDao()?.deleteUser(id)
     fun closeDB(){
+        dao?.close()
+        dao = null
         INSTANCE
     }
 }
