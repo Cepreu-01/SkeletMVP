@@ -10,10 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentMainnBinding
-import com.example.skeletmvp.repository.Repository
-import com.example.skeletmvp.repository.room.dao.UserDao
-import com.example.skeletmvp.repository.room.model.UserAddress
-import com.example.skeletmvp.repository.room.model.UserModel
 import com.example.skeletmvp.repository.room.model.UserWithAddress
 import com.example.skeletmvp.ui.recyclerview.ItemClicks
 import com.example.skeletmvp.ui.recyclerview.RecyclerAdapter
@@ -21,13 +17,7 @@ import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
 import com.example.skeletmvp.ui.view.fragments.main.presenter.MainPresenter
 import com.example.skeletmvp.utils.ADD_USER
 import com.example.skeletmvp.utils.UPDATE_USER
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_mainn.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainnFragment : BaseFragment<FragmentMainnBinding>(), ItemClicks,IMainFragment {
     private var adapter: RecyclerAdapter? = null
@@ -86,7 +76,7 @@ class MainnFragment : BaseFragment<FragmentMainnBinding>(), ItemClicks,IMainFrag
         if (userId != null) presenter?.deleteUser(userId)
     }
 
-    override fun showMessage(message: String) {
+    override fun showMessage(message: Int) {
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
 

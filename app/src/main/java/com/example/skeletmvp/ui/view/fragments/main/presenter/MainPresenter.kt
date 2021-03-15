@@ -2,6 +2,7 @@ package com.example.skeletmvp.ui.view.fragments.main.presenter
 
 import android.content.Context
 import android.os.Bundle
+import com.example.skeletmvp.R
 import com.example.skeletmvp.repository.Repository
 import com.example.skeletmvp.repository.room.dao.UserDao
 import com.example.skeletmvp.repository.room.db.UserDatabase
@@ -60,7 +61,7 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
                 }
             }
             arguments?.clear()
-            iMainFragment.showMessage("UPDATE USER")
+            iMainFragment.showMessage(R.string.user_updated)
         }
     }
 
@@ -81,7 +82,7 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
                 }
             }
             arguments?.clear()
-            iMainFragment.showMessage("ADD USER")
+            iMainFragment.showMessage(R.string.user_added)
         }
     }
 
@@ -89,6 +90,6 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
         CoroutineScope(Dispatchers.IO).launch {
             repository?.deleteUser(userId)
         }
-        iMainFragment.showMessage("DELETE USER")
+        iMainFragment.showMessage(R.string.user_deleted)
     }
 }

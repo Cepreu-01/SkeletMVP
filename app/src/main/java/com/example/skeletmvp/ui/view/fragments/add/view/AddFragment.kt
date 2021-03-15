@@ -28,7 +28,7 @@ class AddFragment : BaseFragment<FragmentAddBinding>(),IAddFragment {
         }
     }
 
-    override fun showMessage(message: String) {
+    override fun showMessage(message: Int) {
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
 

@@ -3,6 +3,7 @@ package com.example.skeletmvp.ui.view.fragments.update.presenter
 import android.os.Bundle
 import android.util.Log
 import androidx.core.os.bundleOf
+import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentUpdateBinding
 import com.example.skeletmvp.repository.room.model.UserWithAddress
 import com.example.skeletmvp.ui.view.fragments.update.view.IUpdateFragment
@@ -24,7 +25,6 @@ class UpdatePresenter(val iUpdateFragment: IUpdateFragment):IUpdatePresenter {
             binding.edtName.setText(userName)
             binding.edtAddress.setText(address)
         }
-        iUpdateFragment.showMessage("SET USER INFO")
     }
 
     override fun createUserToUpdate(
@@ -47,7 +47,7 @@ class UpdatePresenter(val iUpdateFragment: IUpdateFragment):IUpdatePresenter {
         if (userId != null && addressId != null) {
             bundle = createUserToUpdate(userId, userName, addressId, address)
         }
-        iUpdateFragment.showMessage("GET USER INFO")
+        iUpdateFragment.showMessage(R.string.get_dates)
         return bundle
     }
 }

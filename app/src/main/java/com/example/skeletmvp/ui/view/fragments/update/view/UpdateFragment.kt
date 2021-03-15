@@ -41,7 +41,7 @@ class UpdateFragment : BaseFragment<FragmentUpdateBinding>(),IUpdateFragment {
         presenter?.setUserInfo(arguments,binding)
     }
 
-    override fun showMessage(message: String) {
+    override fun showMessage(message: Int) {
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
 
