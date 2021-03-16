@@ -30,7 +30,6 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
     override fun observeChanges() {
         disp = repository?.getUserWithAddress()?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())?.subscribe {
-                iMainFragment.updateAdapter(it)
             }
     }
 
@@ -40,56 +39,5 @@ class MainPresenter(val iMainFragment: IMainFragment, context: Context) : IMainP
         disp?.dispose()
     }
 
-    override fun getAddUserArguments(arguments: Bundle?)=arguments?.getParcelable<UserWithAddress>(ADD_USER)
 
-    override fun getUpdateUserArguments(arguments: Bundle?)=arguments?.getParcelable<UserWithAddress>(UPDATE_USER)
-
-    override fun updateUser(arguments:Bundle?) {
-        if(getUpdateUserArguments(arguments) != null) {
-            val userWithAddress = getUpdateUserArguments(arguments)
-            val userId = userWithAddress?.user_id
-            val userName = userWithAddress?.user_name
-            val userAddressId = userWithAddress?.user_address_id
-            val userAddress = userWithAddress?.user_address
-
-            if (userId != null && userName != null && userAddressId != null && userAddress != null) {
-                val user = UserModel(userId, userName)
-                val address = UserAddress(userAddressId, userAddress)
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    repository?.updateUserWithAddress(user, address)
-                }
-            }
-            arguments?.clear()
-            iMainFragment.showMessage(R.string.user_updated)
-        }
-    }
-
-    override fun addUser(arguments: Bundle?) {
-        if (getAddUserArguments(arguments)!=null) {
-            val userWithAddress = getAddUserArguments(arguments)
-            val userId = userWithAddress?.user_id
-            val userName = userWithAddress?.user_name
-            val userAddressId = userWithAddress?.user_address_id
-            val userAddress = userWithAddress?.user_address
-
-            if (userId != null && userName != null && userAddressId != null && userAddress != null) {
-                val user = UserModel(userId, userName)
-                val address = UserAddress(userAddressId, userAddress)
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    repository?.insertUserWithAddress(user, address)
-                }
-            }
-            arguments?.clear()
-            iMainFragment.showMessage(R.string.user_added)
-        }
-    }
-
-    override fun deleteUser(userId:Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            repository?.deleteUser(userId)
-        }
-        iMainFragment.showMessage(R.string.user_deleted)
-    }
 }

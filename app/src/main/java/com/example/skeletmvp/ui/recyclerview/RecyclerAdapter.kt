@@ -1,12 +1,12 @@
 package com.example.skeletmvp.ui.recyclerview
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skeletmvp.R
 import com.example.skeletmvp.repository.room.model.UserWithAddress
-import kotlinx.android.synthetic.main.item.view.*
 
 
 class RecyclerAdapter(
@@ -19,8 +19,7 @@ class RecyclerAdapter(
             setClickListeners()
         }
 
-        val userName = item.tv_name
-        val userAddress = item.tv_address
+
 
         override fun onClick(v: View?) {
             itemClicks.itemClick(adapterPosition)
@@ -38,15 +37,12 @@ class RecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item,parent,false)
-        return ViewHolder(view)
+        return ViewHolder(parent)
     }
 
     override fun getItemCount() = userList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = userList[position]
-        holder.userName.text = item.user_name
-        holder.userAddress.text = item.user_address
+
     }
 }

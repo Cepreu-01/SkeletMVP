@@ -19,61 +19,29 @@ import com.example.skeletmvp.utils.ADD_USER
 import com.example.skeletmvp.utils.UPDATE_USER
 import kotlinx.android.synthetic.main.fragment_mainn.*
 
-class MainnFragment : BaseFragment<FragmentMainnBinding>(), ItemClicks,IMainFragment {
-    private var adapter: RecyclerAdapter? = null
+class MainnFragment : BaseFragment<FragmentMainnBinding>(),IMainFragment {
     private var recyclerView: RecyclerView? = null
     private var presenter:MainPresenter?=null
 
-    init {
-        adapter = RecyclerAdapter(itemClicks = this)
-    }
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMainnBinding
         get() = FragmentMainnBinding::inflate
 
 
     override fun setupViews() {
-        setupRecycler()
         presenter = MainPresenter(this,requireContext())
-    }
-
-    override fun updateAdapter(list: List<UserWithAddress>) {
-        adapter?.userList?.clear()
-        adapter?.userList?.addAll(list)
-        adapter?.notifyDataSetChanged()
-    }
-
-    override fun setupRecycler() {
-        recyclerView = recycler_view
-        recyclerView?.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        recyclerView?.adapter = adapter
     }
 
     override fun onDestroy() {
         super.onDestroy()
         presenter?.destroyRefs()
         recyclerView = null
-        adapter = null
     }
 
     override fun onStart() {
         super.onStart()
-        presenter?.addUser(arguments)
-        presenter?.updateUser(arguments)
         presenter?.observeChanges()
 
-    }
-
-    override fun itemClick(position: Int) {
-        val user = adapter?.userList?.get(position)
-        val bundle = bundleOf(UPDATE_USER to user)
-        findNavController().navigate(R.id.action_mainnFragment_to_updateFragment, bundle)
-    }
-
-    override fun longItemClick(position: Int) {
-        val userId = adapter?.userList?.get(position)?.user_id
-        if (userId != null) presenter?.deleteUser(userId)
     }
 
     override fun showMessage(message: Int) {

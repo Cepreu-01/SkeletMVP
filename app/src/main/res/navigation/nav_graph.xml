@@ -8,30 +8,5 @@
         android:id="@+id/mainnFragment"
         android:name="com.example.skeletmvp.ui.view.fragments.main.view.MainnFragment"
         android:label="@string/main_fragment_label"
-        tools:layout="@layout/fragment_mainn" >
-        <action
-            android:id="@+id/action_mainnFragment_to_addFragment"
-            app:destination="@id/addFragment" />
-        <action
-            android:id="@+id/action_mainnFragment_to_updateFragment"
-            app:destination="@id/updateFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.add.view.AddFragment"
-        android:label="@string/add_fragment_label"
-        tools:layout="@layout/fragment_add" >
-        <action
-            android:id="@+id/action_addFragment_to_mainnFragment"
-            app:destination="@id/mainnFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/updateFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.update.view.UpdateFragment"
-        android:label="@string/update_fragment_label"
-        tools:layout="@layout/fragment_update" >
-        <action
-            android:id="@+id/action_updateFragment_to_mainnFragment"
-            app:destination="@id/mainnFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_mainn" />
 </navigation>

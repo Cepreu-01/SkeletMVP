@@ -7,9 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.skeletmvp.R
-import com.example.skeletmvp.databinding.FragmentAddBinding
 import com.example.skeletmvp.databinding.FragmentMainnBinding
-import com.example.skeletmvp.databinding.FragmentUpdateBinding
 
 abstract class BaseFragment<VB:ViewBinding> : Fragment() {
     private var _binding:ViewBinding?=null
@@ -47,14 +45,14 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         when(binding){
-            is FragmentMainnBinding  -> menu.add(0,1,0,R.string.menu_add)
+            //is FragmentMainnBinding  -> menu.add(0,1,0,R.string.menu_add)
         }
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            1 -> navController?.navigate(R.id.action_mainnFragment_to_addFragment)
+            //1 -> navController?.navigate(R.id.action_mainnFragment_to_addFragment)
         }
         return super.onOptionsItemSelected(item)
     }

@@ -74,4 +74,8 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:1.1.1"
     implementation "androidx.room:room-rxjava2:2.2.6"
 
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
 }
