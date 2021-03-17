@@ -1,21 +1,29 @@
 package com.example.skeletmvp.repository
 
 import android.content.Context
+import com.example.skeletmvp.repository.retrofit.SimpleRetrofit
 import com.example.skeletmvp.repository.room.db.UserDatabase
-import com.example.skeletmvp.repository.room.model.UserAddress
-import com.example.skeletmvp.repository.room.model.UserModel
+import com.example.skeletmvp.repository.room.model.UserLogin
 
 class Repository(context: Context) {
-    var dao = UserDatabase.getInstance(context)
-    var INSTANCE = UserDatabase.removeInstance()
+    private var api = SimpleRetrofit.api
+    private var dao = UserDatabase.getInstance(context)
+    private var INSTANCE = UserDatabase.removeInstance()
 
-    fun getUserWithAddress() = dao?.getDao()?.getUserWithAddress()
-    fun insertUserWithAddress(userModel: UserModel,userAddress: UserAddress) = dao?.getDao()?.insertUserWithAddress(userModel,userAddress)
-    fun updateUserWithAddress(userModel: UserModel,userAddress: UserAddress) = dao?.getDao()?.updateUserWithAddress(userModel,userAddress)
-    fun deleteUser(id:Int) = dao?.getDao()?.deleteUser(id)
+    fun saveCurrentLogin(userLogin:UserLogin) = dao?.getDao()?.saveCurrentLogin(userLogin)
+    fun getCurrentLogin() = dao?.getDao()?.getCurrentLogin()
+
+    fun getUserRepos(user:String) = api.getUserRepos(user)
+    fun getUserInfo(user:String) = api.getUserInfo(user)
+    fun getUserRepoPojo(user:String) = api.getUserRepoPOGO(user)
+
     fun closeDB(){
         dao?.close()
-        dao = null
         INSTANCE
     }
+    fun destroyRefs(){
+        dao = null
+        api = null
+    }
+
 }

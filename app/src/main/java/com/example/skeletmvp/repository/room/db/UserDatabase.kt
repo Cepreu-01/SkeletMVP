@@ -5,14 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.skeletmvp.repository.room.dao.UserDao
-import com.example.skeletmvp.repository.room.model.UserAddress
-import com.example.skeletmvp.repository.room.model.UserModel
+import com.example.skeletmvp.repository.room.model.UserLogin
 
-@Database(entities = [UserModel::class,UserAddress::class], version = 1, exportSchema = true)
+@Database(entities = [UserLogin::class], version = 1, exportSchema = false)
 abstract class UserDatabase:RoomDatabase() {
     abstract fun getDao():UserDao
     companion object{
-        private const val DB_NAME = "UserDatabase"
+        private const val DB_NAME = "Database"
         private var INSTANCE:UserDatabase?=null
 
         fun getInstance(context: Context):UserDatabase?{

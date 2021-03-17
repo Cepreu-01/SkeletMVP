@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.example.skeletmvp.R
-import com.example.skeletmvp.databinding.FragmentMainnBinding
+
 
 abstract class BaseFragment<VB:ViewBinding> : Fragment() {
     private var _binding:ViewBinding?=null

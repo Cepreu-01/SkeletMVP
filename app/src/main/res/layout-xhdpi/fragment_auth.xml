@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".ui.view.fragments.main.view.MainnFragment">
+    tools:context=".ui.view.fragments.auth.AuthFragment">
 
     <EditText
         android:id="@+id/edt_login"
@@ -16,16 +16,14 @@
         android:hint="login"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/edt_password"
+    <CheckBox
+        android:id="@+id/checkbox_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textVisiblePassword" />
+        android:text="Запомнить логин" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_enter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="enter" />

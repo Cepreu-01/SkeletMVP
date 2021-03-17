@@ -1,4 +1,4 @@
 package com.example.skeletmvp.utils
 
-const val UPDATE_USER ="update_user"
-const val ADD_USER ="add_user"
+const val USER_LOGIN = "user_login"
+const val IS_SAVE_LOGIN = "is_save_login"

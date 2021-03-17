@@ -2,8 +2,6 @@ package com.example.skeletmvp.ui.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -19,7 +17,6 @@ class MainActivity : AppCompatActivity() {
 
         navController = Navigation.findNavController(this,R.id.fragment_container)
         NavigationUI.setupActionBarWithNavController(this,navController)
-
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()

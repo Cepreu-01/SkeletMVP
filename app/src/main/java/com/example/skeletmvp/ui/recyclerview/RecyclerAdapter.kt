@@ -1,16 +1,12 @@
 package com.example.skeletmvp.ui.recyclerview
 
-import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.skeletmvp.R
-import com.example.skeletmvp.repository.room.model.UserWithAddress
 
 
 class RecyclerAdapter(
-    var userList:ArrayList<UserWithAddress> = ArrayList(),
+    var userList:ArrayList<String> = ArrayList(),
     val itemClicks: ItemClicks
 ):RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
