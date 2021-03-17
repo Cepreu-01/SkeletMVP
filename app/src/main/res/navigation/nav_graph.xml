@@ -17,21 +17,5 @@
         android:id="@+id/coordinatorFragment"
         android:name="com.example.skeletmvp.ui.view.fragments.coordinator.CoordinatorFragment"
         android:label="fragment_coordinator"
-        tools:layout="@layout/fragment_coordinator" >
-        <action
-            android:id="@+id/action_coordinatorFragment_to_authFragment"
-            app:destination="@id/authFragment" />
-        <action
-            android:id="@+id/action_coordinatorFragment_to_detalInfoFragment"
-            app:destination="@id/detalInfoFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detalInfoFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.DetalInfoFragment"
-        android:label="fragment_detal_info"
-        tools:layout="@layout/fragment_detal_info" >
-        <action
-            android:id="@+id/action_detalInfoFragment_to_coordinatorFragment2"
-            app:destination="@id/coordinatorFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_coordinator" />
 </navigation>
