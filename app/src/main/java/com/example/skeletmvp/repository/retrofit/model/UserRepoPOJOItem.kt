@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class UserRepoPOJOItem(
-    val description: String,
+    val description: String?,
     val forks_count: Int,
     @PrimaryKey
     val name: String,

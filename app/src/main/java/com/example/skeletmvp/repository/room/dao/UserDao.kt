@@ -17,5 +17,7 @@ interface UserDao {
     fun getCurrentLogin(): Maybe<UserLogin>
     @Query("SELECT * FROM UserRepoPOJOItem WHERE UserRepoPOJOItem.Ownerlogin ==:currentLogin")
     fun getSavedRepos(currentLogin:String):Observable<List<UserRepoPOJOItem>>
+    @Query("DELETE FROM UserRepoPOJOItem WHERE UserRepoPOJOItem.name ==:repoName")
+    fun removeRepo(repoName:String):Completable
 
 }

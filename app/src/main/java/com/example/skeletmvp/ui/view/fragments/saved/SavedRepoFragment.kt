@@ -1,24 +1,19 @@
 package com.example.skeletmvp.ui.view.fragments.saved
 
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.SearchView
-import androidx.core.os.bundleOf
-import androidx.navigation.fragment.findNavController
-import com.example.skeletmvp.R
-import com.example.skeletmvp.currentlogin.CurrentLogin
 import com.example.skeletmvp.databinding.FragmentSavedRepoBinding
 import com.example.skeletmvp.repository.Repository
-import com.example.skeletmvp.repository.retrofit.SimpleRetrofit
-import com.example.skeletmvp.repository.retrofit.model.User
 import com.example.skeletmvp.repository.retrofit.model.UserRepoPOJOItem
 import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
-import io.reactivex.Flowable
-import io.reactivex.FlowableSubscriber
-import io.reactivex.Observable
-import io.reactivex.Observer
+import com.example.skeletmvp.utils.USER_LOGIN
+import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
@@ -40,8 +35,17 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>() {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arrayList)
         listView.adapter = adapter
 
-        listView.setOnItemClickListener { parent, view, position, id ->
-
+        listView.setOnItemLongClickListener { parent, view, position, id ->
+            val dialogBuilder = AlertDialog.Builder(requireContext())
+            dialogBuilder.setMessage("Удалить этот репозиторий?")
+            dialogBuilder.setNegativeButton("Нет",DialogInterface.OnClickListener { dialog, which -> })
+            dialogBuilder.setPositiveButton("Да",DialogInterface.OnClickListener { dialog, which ->
+                val repoName = arrayList[position]
+                removeRepo(repoName)
+            })
+            dialogBuilder.create()
+            dialogBuilder.show()
+            true
         }
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -59,13 +63,10 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>() {
             }
         })
 
-        val currentLogin = CurrentLogin.login
-        repository?.getSavedRepos(currentLogin)?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
+        val currentLogin = activity?.intent?.getStringExtra(USER_LOGIN)
+        repository?.getSavedRepos(currentLogin!!)?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe(object:DisposableObserver<List<UserRepoPOJOItem>>(){
-                override fun onComplete() {
-
-                }
-
+                override fun onComplete() {}
                 override fun onNext(t: List<UserRepoPOJOItem>) {
                     arrayList.clear()
                     t.forEach {
@@ -73,9 +74,26 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>() {
                     }
                     adapter.notifyDataSetChanged()
                 }
+                override fun onError(e: Throwable) {}
+            })
+    }
+
+    private fun removeRepo(repoName: String) {
+        repository
+            ?.removeRepo(repoName)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe(object : CompletableObserver{
+                override fun onComplete() {
+                    Log.e("COMPLETE:","COMPLETED")
+                }
+
+                override fun onSubscribe(d: Disposable) {
+
+                }
 
                 override fun onError(e: Throwable) {
-
+                    Log.e("ERROR:",e.message.toString())
                 }
             })
     }

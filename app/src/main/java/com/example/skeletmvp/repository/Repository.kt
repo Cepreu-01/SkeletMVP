@@ -15,6 +15,7 @@ class Repository(context: Context) {
     fun getCurrentLogin() = dao?.getDao()?.getCurrentLogin()
     fun saveCurrentRepo(repo: UserRepoPOJOItem) = dao?.getDao()?.saveCurrentRepo(repo)
     fun getSavedRepos(currentLogin:String) = dao?.getDao()?.getSavedRepos(currentLogin)
+    fun removeRepo(repoName:String) = dao?.getDao()?.removeRepo(repoName)
 
     fun getUserRepos(user:String) = api.getUserRepos(user)
     fun getUserInfo(user:String) = api.getUserInfo(user)

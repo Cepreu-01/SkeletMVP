@@ -10,13 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.skeletmvp.R
-import com.example.skeletmvp.currentlogin.CurrentLogin
 import com.example.skeletmvp.databinding.FragmentDetalInfoBinding
 import com.example.skeletmvp.repository.Repository
 import com.example.skeletmvp.repository.retrofit.model.Owner
 import com.example.skeletmvp.repository.retrofit.model.Repo
 import com.example.skeletmvp.repository.retrofit.model.UserRepoPOJOItem
 import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
+import com.example.skeletmvp.utils.USER_LOGIN
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableObserver
@@ -38,8 +38,11 @@ class DetalInfoFragment : BaseFragment<FragmentDetalInfoBinding>() {
     override fun setupViews() {
         repository = Repository(requireContext())
 
+
+        val login = activity?.intent?.getStringExtra(USER_LOGIN)
+
         repository
-            ?.getUserRepoPojo(CurrentLogin.login)
+            ?.getUserRepoPojo(login!!)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe(object: DisposableObserver<List<UserRepoPOJOItem>>(){
@@ -79,7 +82,7 @@ class DetalInfoFragment : BaseFragment<FragmentDetalInfoBinding>() {
             })
 
         button.setOnClickListener {
-            findNavController().navigate(R.id.action_detalInfoFragment_to_reposFragment)
+            findNavController().navigate(R.id.action_detalInfoFragment_to_coordinatorFragment)
         }
         btn_save_repo.setOnClickListener {
             Log.e("REPO", saveRepo.toString())
