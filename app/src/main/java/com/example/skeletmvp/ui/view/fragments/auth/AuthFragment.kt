@@ -35,7 +35,8 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
     override fun setupViews() {
         binding.btnEnter.setOnClickListener {
             val login=getLogin()
-            isRememberLogin(login)
+            saveCurrentLogin(login)
+            //isRememberLogin(login)
             findNavController().navigate(R.id.action_authFragment_to_coordinatorFragment)
         }
     }

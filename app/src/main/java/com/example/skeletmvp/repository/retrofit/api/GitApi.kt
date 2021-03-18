@@ -1,5 +1,6 @@
 package com.example.skeletmvp.repository.retrofit.api
 
+import androidx.room.Insert
 import com.example.skeletmvp.repository.retrofit.model.Repo
 import com.example.skeletmvp.repository.retrofit.model.User
 import com.example.skeletmvp.repository.retrofit.model.UserRepoPOJOItem

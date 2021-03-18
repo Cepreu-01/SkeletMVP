@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_nested"
-    app:startDestination="@id/infoFragment">
+    app:startDestination="@id/reposFragment">
 
-    <fragment
-        android:id="@+id/infoFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.info.InfoFragment"
-        android:label="fragment_info"
-        tools:layout="@layout/fragment_info" >
-        <action
-            android:id="@+id/action_infoFragment_to_detalInfoFragment"
-            app:destination="@id/detalInfoFragment" />
-    </fragment>
     <fragment
         android:id="@+id/detalInfoFragment"
         android:name="com.example.skeletmvp.ui.view.fragments.DetalInfoFragment"
         android:label="fragment_detal_info"
         tools:layout="@layout/fragment_detal_info" >
         <action
-            android:id="@+id/action_detalInfoFragment_to_infoFragment"
-            app:destination="@id/infoFragment" />
+            android:id="@+id/action_detalInfoFragment_to_reposFragment"
+            app:destination="@id/reposFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reposFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.repos.ReposFragment"
+        android:label="fragment_repos"
+        tools:layout="@layout/fragment_repos" >
+        <action
+            android:id="@+id/action_reposFragment_to_detalInfoFragment"
+            app:destination="@id/detalInfoFragment" />
     </fragment>
 </navigation>

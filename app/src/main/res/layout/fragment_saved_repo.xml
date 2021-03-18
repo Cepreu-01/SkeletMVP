@@ -7,7 +7,7 @@
     android:background="@color/colorMoreBluish"
     android:orientation="vertical"
     android:paddingTop="100dp"
-    tools:context=".ui.view.fragments.info.InfoFragment">
+    tools:context=".ui.view.fragments.saved.SavedRepoFragment">
 
     <SearchView
         android:id="@+id/search_view"
@@ -18,4 +18,5 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

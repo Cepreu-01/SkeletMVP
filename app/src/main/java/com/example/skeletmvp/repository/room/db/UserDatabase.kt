@@ -4,10 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.skeletmvp.repository.retrofit.model.UserRepoPOJOItem
 import com.example.skeletmvp.repository.room.dao.UserDao
 import com.example.skeletmvp.repository.room.model.UserLogin
 
-@Database(entities = [UserLogin::class], version = 1, exportSchema = false)
+@Database(entities = [UserLogin::class,UserRepoPOJOItem::class], version = 1, exportSchema = false)
 abstract class UserDatabase:RoomDatabase() {
     abstract fun getDao():UserDao
     companion object{
