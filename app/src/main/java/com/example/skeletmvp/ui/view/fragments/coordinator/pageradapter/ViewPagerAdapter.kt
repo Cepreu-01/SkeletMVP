@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 
-class ViewPagerAdapter(fm:FragmentManager,b:Int):FragmentPagerAdapter(fm,b) {
+class ViewPagerAdapter(cfm:FragmentManager,b:Int):FragmentPagerAdapter(cfm,b) {
     private val listOfFragments = ArrayList<Fragment>()
     private val listOfTitles = ArrayList<String>()
 

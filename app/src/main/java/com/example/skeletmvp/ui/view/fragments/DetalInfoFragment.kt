@@ -36,6 +36,7 @@ class DetalInfoFragment : BaseFragment<FragmentDetalInfoBinding>() {
         get() = FragmentDetalInfoBinding::inflate
 
     override fun setupViews() {
+
         repository = Repository(requireContext())
 
 

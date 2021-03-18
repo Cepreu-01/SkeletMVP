@@ -28,6 +28,8 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>() {
         get() = FragmentSavedRepoBinding::inflate
 
     override fun setupViews() {
+        retainInstance = true
+
         repository = Repository(requireContext())
 
         val searchView =binding.searchView

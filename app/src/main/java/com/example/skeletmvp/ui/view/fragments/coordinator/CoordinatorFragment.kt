@@ -17,8 +17,7 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding>() {
         get() = FragmentCoordinatorBinding::inflate
 
     override fun setupViews() {
-        Log.e("VIEWCREATED","VIEWCREATED")
-        val pagerAdapter = ViewPagerAdapter(requireActivity().supportFragmentManager,0)
+        val pagerAdapter = ViewPagerAdapter(childFragmentManager,0)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
 
         val reposFragment = ReposFragment()

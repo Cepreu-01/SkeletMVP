@@ -28,7 +28,7 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
-        retainInstance = true
+        //retainInstance = true
         navController = findNavController()
     }
     abstract fun setupViews()

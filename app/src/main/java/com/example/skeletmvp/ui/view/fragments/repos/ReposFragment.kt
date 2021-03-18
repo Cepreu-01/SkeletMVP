@@ -27,6 +27,8 @@ class ReposFragment : BaseFragment<FragmentReposBinding>() {
         get() = FragmentReposBinding::inflate
 
     override fun setupViews() {
+        retainInstance = true
+
         repository = Repository(requireContext())
 
         val searchView =binding.searchView
