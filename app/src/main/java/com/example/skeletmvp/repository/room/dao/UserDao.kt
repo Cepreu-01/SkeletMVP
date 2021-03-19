@@ -19,5 +19,8 @@ interface UserDao {
     fun getSavedRepos(currentLogin:String):Observable<List<UserRepoPOJOItem>>
     @Query("DELETE FROM UserRepoPOJOItem WHERE UserRepoPOJOItem.name ==:repoName")
     fun removeRepo(repoName:String):Completable
+    @Query("DELETE FROM UserRepoPOJOItem")
+    fun removeAllRepos():Completable
+
 
 }

@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentCoordinatorBinding
+import com.example.skeletmvp.databinding.FragmentSavedRepoBinding
 
 
 abstract class BaseFragment<VB:ViewBinding> : Fragment() {
@@ -46,14 +47,15 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         when(binding){
-            //is FragmentCoordinatorBinding  -> menu.add(0,1,0, R.string.exit)
+            is FragmentCoordinatorBinding  -> menu.add(0,1,0, R.string.exit)
+            //is FragmentSavedRepoBinding -> menu.add(0,2,0,R.string.remove_all)
         }
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            //1 -> navController?.navigate(R.id.action_coordinatorFragment_to_authFragment)
+            1 -> navController?.navigate(R.id.authFragment)
         }
         return super.onOptionsItemSelected(item)
     }

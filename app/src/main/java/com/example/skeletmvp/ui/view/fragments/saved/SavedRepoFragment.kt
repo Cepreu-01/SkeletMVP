@@ -4,15 +4,16 @@ package com.example.skeletmvp.ui.view.fragments.saved
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.SearchView
+import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentSavedRepoBinding
 import com.example.skeletmvp.repository.Repository
 import com.example.skeletmvp.repository.retrofit.model.UserRepoPOJOItem
 import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
 import com.example.skeletmvp.utils.USER_LOGIN
+import io.reactivex.Completable
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -96,6 +97,38 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>() {
 
                 override fun onError(e: Throwable) {
                     Log.e("ERROR:",e.message.toString())
+                }
+            })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.add(0,2,0, R.string.remove_all)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            2 -> removeAllRepos()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun removeAllRepos() {
+        repository
+            ?.removeAllRepos()
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe(object: CompletableObserver{
+                override fun onComplete() {
+
+                }
+
+                override fun onSubscribe(d: Disposable) {
+
+                }
+
+                override fun onError(e: Throwable) {
+
                 }
             })
     }
