@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.example.skeletmvp.R
+import com.example.skeletmvp.databinding.FragmentCoordinatorBinding
 
 
 abstract class BaseFragment<VB:ViewBinding> : Fragment() {
@@ -28,7 +30,6 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
-        //retainInstance = true
         navController = findNavController()
     }
     abstract fun setupViews()
@@ -45,14 +46,14 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         when(binding){
-            //is FragmentMainnBinding  -> menu.add(0,1,0,R.string.menu_add)
+            //is FragmentCoordinatorBinding  -> menu.add(0,1,0, R.string.exit)
         }
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            //1 -> navController?.navigate(R.id.action_mainnFragment_to_addFragment)
+            //1 -> navController?.navigate(R.id.action_coordinatorFragment_to_authFragment)
         }
         return super.onOptionsItemSelected(item)
     }

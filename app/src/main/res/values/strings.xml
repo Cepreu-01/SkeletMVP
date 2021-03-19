@@ -10,6 +10,5 @@
     <string name="user_updated">Данные обновлены</string>
     <string name="user_added">Пользователь добавлен</string>
     <string name="user_deleted">Пользователь удален</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="exit">Выйти</string>
 </resources>
