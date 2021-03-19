@@ -1,6 +1,5 @@
 package com.example.skeletmvp.ui.view.fragments.coordinator
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
@@ -20,17 +19,25 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding>() {
         val pagerAdapter = ViewPagerAdapter(childFragmentManager,0)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
 
+
+        val login = getCurrentUserLogin()
+        val bundle = bundleOf("new_args" to login)
+
         val reposFragment = ReposFragment()
-        val args = activity?.intent?.getStringExtra(USER_LOGIN)
-        Log.e("ARGS",args.toString())
-        val budnle = bundleOf("new_args" to args)
-        reposFragment.arguments=budnle
         val savedRepoFragment = SavedRepoFragment()
+
+        reposFragment.arguments=bundle
 
         pagerAdapter.addFragmentWithTitle(reposFragment,"Repos")
         pagerAdapter.addFragmentWithTitle(savedRepoFragment,"Saved")
         binding.viewPager.adapter = pagerAdapter
 
+    }
+    private fun getCurrentUserLogin():String?{
+        val login=activity?.intent?.getStringExtra(USER_LOGIN)
+        if (!login.isNullOrEmpty()){
+            return login
+        } else return null
     }
 
 }
