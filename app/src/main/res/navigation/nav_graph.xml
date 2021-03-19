@@ -6,7 +6,7 @@
     app:startDestination="@id/authFragment">
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.auth.AuthFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.auth.view.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
