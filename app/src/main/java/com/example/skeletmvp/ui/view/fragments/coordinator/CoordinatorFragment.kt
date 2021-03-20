@@ -1,13 +1,17 @@
 package com.example.skeletmvp.ui.view.fragments.coordinator
 
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.skeletmvp.databinding.FragmentCoordinatorBinding
 import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
 import com.example.skeletmvp.ui.view.fragments.coordinator.pageradapter.ViewPagerAdapter
-import com.example.skeletmvp.ui.view.fragments.repos.ReposFragment
-import com.example.skeletmvp.ui.view.fragments.saved.SavedRepoFragment
+import com.example.skeletmvp.ui.view.fragments.repos.view.ReposFragment
+import com.example.skeletmvp.ui.view.fragments.saved.view.SavedRepoFragment
 import com.example.skeletmvp.utils.USER_LOGIN
 
 
@@ -16,28 +20,21 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding>() {
         get() = FragmentCoordinatorBinding::inflate
 
     override fun setupViews() {
+
+
         val pagerAdapter = ViewPagerAdapter(childFragmentManager,0)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
 
-
-        val login = getCurrentUserLogin()
-        val bundle = bundleOf("new_args" to login)
-
-        val reposFragment = ReposFragment()
-        val savedRepoFragment = SavedRepoFragment()
-
-        reposFragment.arguments=bundle
+        val reposFragment =
+            ReposFragment()
+        val savedRepoFragment =
+            SavedRepoFragment()
 
         pagerAdapter.addFragmentWithTitle(reposFragment,"Repos")
         pagerAdapter.addFragmentWithTitle(savedRepoFragment,"Saved")
         binding.viewPager.adapter = pagerAdapter
 
-    }
-    private fun getCurrentUserLogin():String?{
-        val login=activity?.intent?.getStringExtra(USER_LOGIN)
-        if (!login.isNullOrEmpty()){
-            return login
-        } else return null
+
     }
 
 }

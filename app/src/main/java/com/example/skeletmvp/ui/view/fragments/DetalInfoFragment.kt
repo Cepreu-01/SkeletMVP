@@ -86,7 +86,6 @@ class DetalInfoFragment : BaseFragment<FragmentDetalInfoBinding>() {
             findNavController().navigate(R.id.action_detalInfoFragment_to_coordinatorFragment)
         }
         btn_save_repo.setOnClickListener {
-            Log.e("REPO", saveRepo.toString())
             saveRepo?.let {userRepo->
                 repository
                     ?.saveCurrentRepo(userRepo)

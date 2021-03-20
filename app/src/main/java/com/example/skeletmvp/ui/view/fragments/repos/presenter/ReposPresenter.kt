@@ -1,5 +1,6 @@
 package com.example.skeletmvp.ui.view.fragments.repos.presenter
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.widget.ArrayAdapter
 import com.example.skeletmvp.repository.Repository
 import com.example.skeletmvp.repository.retrofit.model.UserRepoPOJOItem
 import com.example.skeletmvp.ui.view.fragments.repos.view.IReposFragment
+import com.example.skeletmvp.utils.USER_LOGIN
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -27,7 +29,6 @@ class ReposPresenter(private val iReposFragment: IReposFragment):IReposPresenter
                 ?.subscribe(object : DisposableObserver<List<UserRepoPOJOItem>>() {
                     override fun onComplete() {}
                     override fun onNext(t: List<UserRepoPOJOItem>) {
-                        Log.e("LIST", t.toString())
                         arrayList.clear()
                         t.forEach {
                             arrayList.add(it.name)
@@ -42,6 +43,6 @@ class ReposPresenter(private val iReposFragment: IReposFragment):IReposPresenter
         } else iReposFragment.showMessage("Логин пустой")
     }
 
-    override fun getCurrentLogin(arguments: Bundle?) = arguments?.getString("new_args")
+    override fun getCurrentLogin(activity: Activity)= activity.intent.getStringExtra(USER_LOGIN)
 
 }

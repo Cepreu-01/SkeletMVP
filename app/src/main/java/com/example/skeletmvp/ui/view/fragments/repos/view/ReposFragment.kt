@@ -1,12 +1,15 @@
 package com.example.skeletmvp.ui.view.fragments.repos.view
 
 
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentReposBinding
@@ -15,6 +18,10 @@ import com.example.skeletmvp.ui.view.fragments.repos.presenter.ReposPresenter
 
 
 class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
+    companion object{
+        const val SAVED_ARRAY = "saved_array"
+    }
+
     private var presenter:ReposPresenter?=null
     private var arrayList:ArrayList<String> = ArrayList()
 
@@ -22,8 +29,6 @@ class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
         get() = FragmentReposBinding::inflate
 
     override fun setupViews() {
-        retainInstance = true
-
         presenter = ReposPresenter(this)
         presenter?.initArgs(requireContext())
 
@@ -31,9 +36,11 @@ class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
 
         creatingSearchView(adapter)
 
-        val login = presenter?.getCurrentLogin(arguments)
+        val login = presenter?.getCurrentLogin(requireActivity())
 
         presenter?.observeRepos(login,adapter,arrayList)
+
+        adapter.notifyDataSetChanged()
     }
 
     private fun creatingSearchView(adapter: ArrayAdapter<String>) {
@@ -67,6 +74,18 @@ class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
             )
         }
         return adapter
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putStringArrayList(SAVED_ARRAY,arrayList)
+        super.onSaveInstanceState(outState)
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val arr = savedInstanceState?.getStringArrayList(SAVED_ARRAY)
+        arr?.let { arrayList.addAll(it) }
     }
 
     override fun showMessage(message: String) {

@@ -7,7 +7,7 @@
     android:background="@color/colorMoreBluish"
     android:orientation="vertical"
     android:paddingTop="100dp"
-    tools:context=".ui.view.fragments.saved.SavedRepoFragment">
+    tools:context=".ui.view.fragments.saved.view.SavedRepoFragment">
 
     <SearchView
         android:id="@+id/search_view"

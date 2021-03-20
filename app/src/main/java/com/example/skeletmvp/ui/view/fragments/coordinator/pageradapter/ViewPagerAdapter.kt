@@ -1,11 +1,13 @@
 package com.example.skeletmvp.ui.view.fragments.coordinator.pageradapter
 
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 
-class ViewPagerAdapter(cfm:FragmentManager,b:Int):FragmentPagerAdapter(cfm,b) {
+class ViewPagerAdapter(cfm:FragmentManager,b:Int): FragmentStatePagerAdapter(cfm,b) {
     private val listOfFragments = ArrayList<Fragment>()
     private val listOfTitles = ArrayList<String>()
 
@@ -27,4 +29,6 @@ class ViewPagerAdapter(cfm:FragmentManager,b:Int):FragmentPagerAdapter(cfm,b) {
     override fun getCount() = listOfFragments.size
 
     override fun getPageTitle(position: Int) = listOfTitles[position]
+
+
 }
