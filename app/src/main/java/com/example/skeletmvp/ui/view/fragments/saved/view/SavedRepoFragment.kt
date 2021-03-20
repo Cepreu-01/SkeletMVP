@@ -3,12 +3,14 @@ package com.example.skeletmvp.ui.view.fragments.saved.view
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentSavedRepoBinding
 import com.example.skeletmvp.repository.Repository
@@ -22,36 +24,59 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_saved_repo.*
 
 class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFragment {
     companion object{
         const val SAVED_ARRAY = "saved_array"
     }
 
+    private var adapter:ArrayAdapter<String>?=null
     private var arrayList:ArrayList<String> = ArrayList()
     private var presenter:SavedRepoPresenter?=null
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSavedRepoBinding
         get() = FragmentSavedRepoBinding::inflate
 
-    override fun setupViews() {
-
-        presenter = SavedRepoPresenter(this)
-        presenter?.initArgs(requireContext())
-
-        val adapter = creatingListView(arrayList)
-
-        creatingSearchView(adapter,arrayList)
-
-        val login = presenter?.getCurrentLogin(requireActivity())
-
-        presenter?.observeSavedRepos(login, adapter, arrayList)
-
-        adapter.notifyDataSetChanged()
-
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putStringArrayList(SAVED_ARRAY,arrayList)
+        super.onSaveInstanceState(outState)
     }
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val arr = savedInstanceState?.getStringArrayList(SAVED_ARRAY)
+        arr?.let { arrayList.addAll(it) }
+
+    }
+
+    override fun setupViews() {
+        presenter = SavedRepoPresenter(this)
+        presenter?.initArgs(requireContext())
+
+        adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arrayList)
+
+        //val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arrayList)
+
+
+        creatingListView(adapter!!, arrayList)
+
+        creatingSearchView(adapter!!,arrayList)
+
+        val login = presenter?.getCurrentLogin(requireActivity())
+
+        presenter?.observeSavedRepos(login, adapter!!, arrayList)
+
+    }
+
+    /*override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        val login = presenter?.getCurrentLogin(requireActivity())
+
+        presenter?.observeSavedRepos(login, adapter!!, arrayList)
+    }*/
 
     private fun creatingSearchView(adapter: ArrayAdapter<String>,arrayList: ArrayList<String>) {
         val searchView = binding.searchView
@@ -71,9 +96,7 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
         })
     }
 
-    private fun creatingListView(arrayList: ArrayList<String>): ArrayAdapter<String> {
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arrayList)
-
+    private fun creatingListView(adapter: ArrayAdapter<String>,arrayList: ArrayList<String>) {
         val listView = binding.listView
         listView.adapter = adapter
 
@@ -91,10 +114,7 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
             dialogBuilder.show()
             true
         }
-        return adapter
     }
-
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -116,18 +136,6 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
 
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putStringArrayList(SAVED_ARRAY,arrayList)
-        super.onSaveInstanceState(outState)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val arr = savedInstanceState?.getStringArrayList(SAVED_ARRAY)
-        arr?.let { arrayList.addAll(it) }
     }
 
 

@@ -30,13 +30,13 @@ class SavedRepoPresenter(private val iSavedRepoFragment: ISavedRepoFragment):ISa
                     override fun onComplete() {}
                     override fun onNext(t: List<UserRepoPOJOItem>) {
                         arrayList.clear()
-                        adapter.notifyDataSetChanged()
                         t.forEach {
                             arrayList.add(it.name)
                             Log.e("LIST",it.name)
-                            adapter.notifyDataSetChanged()
-                        }
 
+                        }
+                        Log.e("ADAPTER","ОБНОВИЛСЯ")
+                        adapter.notifyDataSetChanged()
                     }
 
                     override fun onError(e: Throwable) {

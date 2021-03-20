@@ -20,10 +20,7 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding>() {
         get() = FragmentCoordinatorBinding::inflate
 
     override fun setupViews() {
-
-
         val pagerAdapter = ViewPagerAdapter(childFragmentManager,0)
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
 
         val reposFragment =
             ReposFragment()
@@ -34,6 +31,9 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding>() {
         pagerAdapter.addFragmentWithTitle(savedRepoFragment,"Saved")
         binding.viewPager.adapter = pagerAdapter
 
+        binding.viewPager.offscreenPageLimit = 2
+
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
 
     }
 
