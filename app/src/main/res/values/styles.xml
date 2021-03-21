@@ -16,8 +16,12 @@
         <item name="android:textSize">@dimen/text_size_middle</item>
         <item name="android:textColor">@color/colorUltraBlack</item>
     </style>
-    <style name="edit_text">
-
+    <style name="text_view">
+        <item name="android:textSize">@dimen/text_size_low</item>
+        <item name="android:text">@string/text_view_test</item>
+    </style>
+    <style name="gravity">
+        <item name="android:gravity">center_vertical</item>
     </style>
 
 

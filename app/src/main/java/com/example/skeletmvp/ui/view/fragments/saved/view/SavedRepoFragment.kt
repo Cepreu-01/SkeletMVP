@@ -70,14 +70,6 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
 
     }
 
-    /*override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-
-        val login = presenter?.getCurrentLogin(requireActivity())
-
-        presenter?.observeSavedRepos(login, adapter!!, arrayList)
-    }*/
-
     private fun creatingSearchView(adapter: ArrayAdapter<String>,arrayList: ArrayList<String>) {
         val searchView = binding.searchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -113,20 +105,6 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
             dialogBuilder.create()
             dialogBuilder.show()
             true
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        if (arrayList.isNotEmpty()) {
-            menu.add(0,2,0, R.string.remove_all)
-        }
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-        if (arrayList.isEmpty()){
-            menu.removeItem(2)
         }
     }
 

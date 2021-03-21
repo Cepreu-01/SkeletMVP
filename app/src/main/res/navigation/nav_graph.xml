@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/detalInfoFragment"
-        android:name="com.example.skeletmvp.ui.view.fragments.DetalInfoFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.detalinfo.view.DetalInfoFragment"
         android:label="fragment_detal_info"
         tools:layout="@layout/fragment_detal_info" >
         <action

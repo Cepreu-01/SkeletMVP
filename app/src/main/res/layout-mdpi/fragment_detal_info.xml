@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     style="@style/gravity"
+    android:orientation="vertical"
     tools:context=".ui.view.fragments.detalinfo.view.DetalInfoFragment">
 
     <LinearLayout
@@ -28,39 +28,39 @@
 
             <TextView
                 android:id="@+id/tv_login"
-                style="@style/text_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/text_view" />
 
             <TextView
                 android:id="@+id/tv_repo_name"
-                style="@style/text_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/text_view" />
 
             <TextView
                 android:id="@+id/tv_created_at"
-                style="@style/text_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/text_view" />
 
             <TextView
                 android:id="@+id/tv_stars_count"
-                style="@style/text_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/text_view" />
 
             <TextView
                 android:id="@+id/tv_forks_count"
-                style="@style/text_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/text_view" />
 
             <TextView
                 android:id="@+id/tv_description"
-                style="@style/text_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                style="@style/text_view" />
 
         </LinearLayout>
 

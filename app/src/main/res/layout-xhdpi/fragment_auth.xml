@@ -13,18 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="login"
+        android:hint="@string/auth_login_hint"
         android:inputType="textPersonName" />
-
-    <CheckBox
-        android:id="@+id/checkbox_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Запомнить логин" />
 
     <Button
         android:id="@+id/btn_enter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="enter" />
+        android:text="@string/auth_button_text" />
 </LinearLayout>

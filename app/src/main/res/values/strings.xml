@@ -12,4 +12,7 @@
     <string name="user_deleted">Пользователь удален</string>
     <string name="exit">Выйти</string>
     <string name="remove_all">Удалить всё</string>
+    <string name="auth_login_hint">login</string>
+    <string name="auth_button_text">enter</string>
+    <string name="text_view_test">test</string>
 </resources>

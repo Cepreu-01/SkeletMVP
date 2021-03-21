@@ -1,6 +1,7 @@
 package com.example.skeletmvp.ui.view.fragments.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -48,7 +49,8 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         when(binding){
             is FragmentCoordinatorBinding  -> menu.add(0,1,0, R.string.exit)
-            //is FragmentSavedRepoBinding -> menu.add(0,2,0,R.string.remove_all)
+
+            is FragmentSavedRepoBinding -> menu.add(0,2,0,R.string.remove_all)
         }
         super.onCreateOptionsMenu(menu, inflater)
     }

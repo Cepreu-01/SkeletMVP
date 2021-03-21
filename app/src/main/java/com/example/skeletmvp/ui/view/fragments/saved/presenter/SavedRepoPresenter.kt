@@ -2,7 +2,6 @@ package com.example.skeletmvp.ui.view.fragments.saved.presenter
 
 import android.app.Activity
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import com.example.skeletmvp.repository.Repository
@@ -35,7 +34,6 @@ class SavedRepoPresenter(private val iSavedRepoFragment: ISavedRepoFragment):ISa
                             Log.e("LIST",it.name)
 
                         }
-                        Log.e("ADAPTER","ОБНОВИЛСЯ")
                         adapter.notifyDataSetChanged()
                     }
 
