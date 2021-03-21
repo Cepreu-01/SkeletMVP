@@ -20,7 +20,6 @@ class DetalInfoFragment : BaseFragment<FragmentDetalInfoBinding>(), IDetalInfoFr
         presenter?.initArgs(requireContext())
 
         val login = presenter?.getLogin(requireActivity())
-        Log.e("LOGIN",login.toString())
 
         presenter?.setupInfo(
             login,

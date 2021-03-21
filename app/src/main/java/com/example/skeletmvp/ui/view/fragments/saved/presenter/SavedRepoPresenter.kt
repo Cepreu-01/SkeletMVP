@@ -31,8 +31,6 @@ class SavedRepoPresenter(private val iSavedRepoFragment: ISavedRepoFragment):ISa
                         arrayList.clear()
                         t.forEach {
                             arrayList.add(it.name)
-                            Log.e("LIST",it.name)
-
                         }
                         adapter.notifyDataSetChanged()
                     }

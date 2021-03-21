@@ -96,7 +96,7 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
 
         listView.setOnItemLongClickListener { parent, view, position, id ->
             val dialogBuilder = AlertDialog.Builder(requireContext())
-            dialogBuilder.setMessage("Удалить этот репозиторий?")
+            dialogBuilder.setMessage(getString(R.string.delete_this_repository))
             dialogBuilder.setNegativeButton(
                 "Нет",
                 DialogInterface.OnClickListener { dialog, which -> })
@@ -121,10 +121,19 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-
+        
         if(arrayList.isEmpty()){
             menu.removeItem(2)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.clear()
+        menu.add(0,1,0,R.string.exit)
+        menu.add(0,2,0,R.string.remove_all)
+
     }
 
 

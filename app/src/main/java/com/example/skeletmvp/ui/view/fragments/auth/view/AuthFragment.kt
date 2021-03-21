@@ -28,13 +28,12 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>(),IAuthFragment {
             if (login!=null) {
                 presenter?.saveCurrentLogin(login)
                 findNavController().navigate(R.id.action_authFragment_to_coordinatorFragment)
-            }
-            //оповестить о пустоте логина
+            }else Toast.makeText(requireContext(),R.string.login_is_empty,Toast.LENGTH_SHORT).show()
         }
     }
 
-    override fun showMessage(string: String) {
-        Toast.makeText(requireContext(),string,Toast.LENGTH_SHORT).show()
+    override fun showMessage(message: Int) {
+        Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
 
 }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.widget.EditText
+import com.example.skeletmvp.R
 import com.example.skeletmvp.repository.Repository
 import com.example.skeletmvp.repository.room.model.UserLogin
 import com.example.skeletmvp.ui.view.fragments.auth.view.IAuthFragment
@@ -35,15 +36,12 @@ class AuthPresenter(private val iAuthFragment: IAuthFragment)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe(object: DisposableCompletableObserver(){
-                override fun onComplete() {
-                    Log.e("COMPLETED","COMPLETED")
-                }
-
+                override fun onComplete() {}
                 override fun onError(e: Throwable) {
                     Log.e("ERROR",e.message.toString())
                 }
             })
-        iAuthFragment.showMessage("Логин сохранен")
+        iAuthFragment.showMessage(R.string.login_saved)
     }
 
     override fun initParams(context: Context) {

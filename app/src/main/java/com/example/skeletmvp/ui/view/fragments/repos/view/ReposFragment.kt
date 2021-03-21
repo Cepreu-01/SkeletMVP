@@ -20,6 +20,8 @@ import com.example.skeletmvp.ui.view.fragments.repos.presenter.ReposPresenter
 class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
     companion object{
         const val SAVED_ARRAY = "saved_array"
+        const val SINGLE_REPO = "single_repo"
+
     }
 
     private var presenter:ReposPresenter?=null
@@ -67,7 +69,7 @@ class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
         listView.adapter = adapter
 
         listView.setOnItemClickListener { parent, view, position, id ->
-            val bundle = bundleOf("single_repo" to position)
+            val bundle = bundleOf(SINGLE_REPO to position)
             findNavController().navigate(
                 R.id.action_coordinatorFragment_to_detalInfoFragment,
                 bundle
@@ -91,5 +93,7 @@ class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
     override fun showMessage(message: String) {
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
+
+
 
 }

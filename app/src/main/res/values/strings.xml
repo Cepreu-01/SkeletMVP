@@ -15,4 +15,7 @@
     <string name="auth_login_hint">login</string>
     <string name="auth_button_text">enter</string>
     <string name="text_view_test">test</string>
+    <string name="delete_this_repository">Удалить этот репозиторий?</string>
+    <string name="login_saved">Логин сохранен</string>
+    <string name="login_is_empty">Логин пустой</string>
 </resources>

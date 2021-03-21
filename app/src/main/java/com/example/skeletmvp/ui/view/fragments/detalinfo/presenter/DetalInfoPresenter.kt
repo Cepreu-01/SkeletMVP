@@ -26,6 +26,10 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class DetalInfoPresenter(private val iDetalInfoFragment: IDetalInfoFragment) : IDetalInfoPresenter {
+    companion object{
+        const val SINGLE_REPO = "single_repo"
+    }
+
     private var repository: Repository? = null
     private var saveRepo: UserRepoPOJOItem? = null
 
@@ -97,7 +101,7 @@ class DetalInfoPresenter(private val iDetalInfoFragment: IDetalInfoFragment) : I
     }
 
     override fun getRepoByPosition(arguments: Bundle?): Int? {
-        val repoPosition = arguments?.getInt("single_repo")!!
+        val repoPosition = arguments?.getInt(SINGLE_REPO)!!
         return repoPosition
     }
 
