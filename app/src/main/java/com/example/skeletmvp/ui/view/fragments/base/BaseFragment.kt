@@ -48,9 +48,9 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         when(binding){
-            is FragmentCoordinatorBinding  -> menu.add(0,1,0, R.string.exit)
+            is FragmentCoordinatorBinding -> menu.add(0,1,0, R.string.exit)
 
-            is FragmentSavedRepoBinding -> menu.add(0,2,0,R.string.remove_all)
+            is FragmentSavedRepoBinding   -> menu.add(0,2,0,R.string.remove_all)
         }
         super.onCreateOptionsMenu(menu, inflater)
     }

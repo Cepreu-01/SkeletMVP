@@ -30,5 +30,4 @@ class ViewPagerAdapter(cfm:FragmentManager,b:Int): FragmentStatePagerAdapter(cfm
 
     override fun getPageTitle(position: Int) = listOfTitles[position]
 
-
 }

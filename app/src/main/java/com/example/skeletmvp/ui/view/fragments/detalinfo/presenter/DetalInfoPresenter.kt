@@ -56,7 +56,7 @@ class DetalInfoPresenter(private val iDetalInfoFragment: IDetalInfoFragment) : I
 
                         val repo = getRepoByPosition(arguments)
                         val singleRepo = t[repo!!]
-                        Log.e("SINGLEREPO", singleRepo.toString())
+
                         saveRepo = UserRepoPOJOItem(
                             singleRepo.description,
                             singleRepo.forks_count,
@@ -68,15 +68,13 @@ class DetalInfoPresenter(private val iDetalInfoFragment: IDetalInfoFragment) : I
                             singleRepo.stargazers_count,
                             singleRepo.created_at
                         )
-                        Log.e("SAVEDREPO", saveRepo.toString())
 
-
-                        tv_login.text = singleRepo.owner.login
-                        tv_repo_name.text = singleRepo.name
-                        tv_description.text = singleRepo.description
-                        tv_forks_count.text = singleRepo.forks_count.toString()
-                        tv_stars_count.text = singleRepo.stargazers_count.toString()
-                        tv_created_at.text = singleRepo.created_at
+                        tv_login.text = "login: "+singleRepo.owner.login
+                        tv_repo_name.text = "name: "+singleRepo.name
+                        tv_description.text = "desc: "+singleRepo.description
+                        tv_forks_count.text = "forks: "+singleRepo.forks_count.toString()
+                        tv_stars_count.text = "stars: "+singleRepo.stargazers_count.toString()
+                        tv_created_at.text = "created: "+singleRepo.created_at
                         CoroutineScope(Dispatchers.IO).launch {
                             val src = singleRepo.owner.avatar_url
                             try {

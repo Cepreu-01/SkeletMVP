@@ -55,19 +55,21 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
         presenter = SavedRepoPresenter(this)
         presenter?.initArgs(requireContext())
 
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
         adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arrayList)
-
-        //val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arrayList)
-
 
         creatingListView(adapter!!, arrayList)
 
         creatingSearchView(adapter!!,arrayList)
 
         val login = presenter?.getCurrentLogin(requireActivity())
-
         presenter?.observeSavedRepos(login, adapter!!, arrayList)
-
+        adapter?.notifyDataSetChanged()
     }
 
     private fun creatingSearchView(adapter: ArrayAdapter<String>,arrayList: ArrayList<String>) {
@@ -114,6 +116,15 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+
+        if(arrayList.isEmpty()){
+            menu.removeItem(2)
+        }
     }
 
 
