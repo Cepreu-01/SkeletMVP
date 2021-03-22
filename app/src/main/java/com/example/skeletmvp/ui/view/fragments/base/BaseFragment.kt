@@ -46,21 +46,4 @@ abstract class BaseFragment<VB:ViewBinding> : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        when(binding){
-            is FragmentCoordinatorBinding -> {
-                menu.clear()
-                menu.add(0,1,0, R.string.exit)
-            }
-        }
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            1 -> navController?.navigate(R.id.authFragment)
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
 }

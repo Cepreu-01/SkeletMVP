@@ -19,6 +19,11 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>(),IAuthFragment {
         presenter?.initParams(requireContext())
     }
 
+    override fun onStop() {
+        super.onStop()
+        presenter = null
+    }
+
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentAuthBinding
         get() = FragmentAuthBinding::inflate
 

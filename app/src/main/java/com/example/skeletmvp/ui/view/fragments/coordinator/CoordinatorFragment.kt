@@ -33,8 +33,8 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding>() {
         val reposFragment = ReposFragment()
         val savedRepoFragment = SavedRepoFragment()
 
-        viewPagerAdapter?.addFragmentWithTitle(reposFragment,"Repos")
-        viewPagerAdapter?.addFragmentWithTitle(savedRepoFragment,"Saved")
+        viewPagerAdapter?.addFragmentWithTitle(reposFragment,"Репозитории")
+        viewPagerAdapter?.addFragmentWithTitle(savedRepoFragment,"Сохраненное")
 
         viewPager = binding.viewPager
 
@@ -43,12 +43,16 @@ class CoordinatorFragment : BaseFragment<FragmentCoordinatorBinding>() {
         binding.tabLayout.setupWithViewPager(viewPager)
 
 
+
     }
 
     override fun onStop() {
         super.onStop()
         repository?.closeDB()
         repository?.destroyRefs()
+        viewPager?.removeAllViews()
+        viewPager = null
+        viewPagerAdapter = null
     }
 
 }

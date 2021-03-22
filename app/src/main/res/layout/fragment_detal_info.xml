@@ -70,6 +70,6 @@
         android:id="@+id/btn_save_repo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="save" />
+        android:text="@string/save_button_text" />
 
 </LinearLayout>

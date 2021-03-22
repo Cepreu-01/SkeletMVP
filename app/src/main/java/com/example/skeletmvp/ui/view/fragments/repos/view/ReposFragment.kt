@@ -3,8 +3,7 @@ package com.example.skeletmvp.ui.view.fragments.repos.view
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
@@ -12,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.skeletmvp.R
+import com.example.skeletmvp.databinding.FragmentCoordinatorBinding
 import com.example.skeletmvp.databinding.FragmentReposBinding
 import com.example.skeletmvp.ui.view.fragments.base.BaseFragment
 import com.example.skeletmvp.ui.view.fragments.repos.presenter.ReposPresenter
@@ -29,6 +29,11 @@ class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentReposBinding
         get() = FragmentReposBinding::inflate
+
+    override fun onStop() {
+        super.onStop()
+        presenter = null
+    }
 
     override fun setupViews() {
         presenter = ReposPresenter(this)
@@ -95,5 +100,17 @@ class ReposFragment : BaseFragment<FragmentReposBinding>(),IReposFragment {
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+            menu.clear()
+            menu.add(0,1,0, R.string.exit)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            1 -> findNavController().navigate(R.id.authFragment)
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }

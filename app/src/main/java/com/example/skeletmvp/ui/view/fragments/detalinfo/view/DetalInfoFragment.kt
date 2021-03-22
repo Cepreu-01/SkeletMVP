@@ -15,6 +15,11 @@ class DetalInfoFragment : BaseFragment<FragmentDetalInfoBinding>(), IDetalInfoFr
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDetalInfoBinding
         get() = FragmentDetalInfoBinding::inflate
 
+    override fun onStop() {
+        super.onStop()
+        presenter = null
+    }
+
     override fun setupViews() {
         presenter = DetalInfoPresenter(this)
         presenter?.initArgs(requireContext())

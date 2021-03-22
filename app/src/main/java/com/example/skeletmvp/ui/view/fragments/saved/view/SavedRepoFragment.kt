@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.example.skeletmvp.R
 import com.example.skeletmvp.databinding.FragmentSavedRepoBinding
 import com.example.skeletmvp.repository.Repository
@@ -49,6 +50,11 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
         val arr = savedInstanceState?.getStringArrayList(SAVED_ARRAY)
         arr?.let { arrayList.addAll(it) }
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        presenter = null
     }
 
     override fun setupViews() {
@@ -112,6 +118,7 @@ class SavedRepoFragment : BaseFragment<FragmentSavedRepoBinding>(),ISavedRepoFra
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+            1 -> findNavController().navigate(R.id.authFragment)
             2 -> presenter?.removeAllRepos()
 
         }

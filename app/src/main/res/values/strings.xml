@@ -2,6 +2,9 @@
     <string name="app_name">SkeletMVP</string>
     <string name="main_fragment_label">Авторизация</string>
     <string name="add_fragment_label">Добавление записи</string>
+    <string name="repo_fragment_label">Просмотр репозиториев</string>
+    <string name="detal_fragment_label">Информация</string>
+    <string name="saved_fragment_label">Сохраненные репозитории</string>
     <string name="update_fragment_label">Обновление записи</string>
     <string name="menu_add">Добавить</string>
     <string name="menu_update">Обновить</string>
@@ -13,9 +16,10 @@
     <string name="exit">Выйти</string>
     <string name="remove_all">Удалить всё</string>
     <string name="auth_login_hint">login</string>
-    <string name="auth_button_text">enter</string>
+    <string name="auth_button_text">Войти</string>
     <string name="text_view_test">test</string>
     <string name="delete_this_repository">Удалить этот репозиторий?</string>
     <string name="login_saved">Логин сохранен</string>
     <string name="login_is_empty">Логин пустой</string>
+    <string name="save_button_text">Сохранить</string>
 </resources>

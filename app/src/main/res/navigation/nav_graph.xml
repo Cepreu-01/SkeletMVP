@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.skeletmvp.ui.view.fragments.auth.view.AuthFragment"
-        android:label="fragment_auth"
+        android:label="@string/main_fragment_label"
         tools:layout="@layout/fragment_auth" >
         <action
             android:id="@+id/action_authFragment_to_coordinatorFragment"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/coordinatorFragment"
         android:name="com.example.skeletmvp.ui.view.fragments.coordinator.CoordinatorFragment"
-        android:label="fragment_coordinator"
+        android:label="@string/repo_fragment_label"
         tools:layout="@layout/fragment_coordinator" >
         <action
             android:id="@+id/action_coordinatorFragment_to_detalInfoFragment"
@@ -30,10 +30,15 @@
     <fragment
         android:id="@+id/detalInfoFragment"
         android:name="com.example.skeletmvp.ui.view.fragments.detalinfo.view.DetalInfoFragment"
-        android:label="fragment_detal_info"
+        android:label="@string/detal_fragment_label"
         tools:layout="@layout/fragment_detal_info" >
         <action
             android:id="@+id/action_detalInfoFragment_to_coordinatorFragment"
             app:destination="@id/coordinatorFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/savedRepoFragment"
+        android:name="com.example.skeletmvp.ui.view.fragments.saved.view.SavedRepoFragment"
+        android:label="@string/saved_fragment_label"
+        tools:layout="@layout/fragment_saved_repo" />
 </navigation>
